@@ -1,0 +1,6 @@
+<launch>
+
+    <!-- 和控制板进行通讯 -->
+    <node pkg="mrobot_bringup" type="mrobot_bringup" name="mrobot_bringup" output="screen" />
+
+</launch>

@@ -1,0 +1,8 @@
+<launch>
+  <!-- follow -->
+
+    <node pkg="follow" type="follow" name="follow"/>
+ 
+    <!-- voice_main -->
+    <node pkg="voice_pkg" type="voice_main" name="voice_main/">
+</launch>  

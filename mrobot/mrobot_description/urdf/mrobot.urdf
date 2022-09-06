@@ -1,0 +1,145 @@
+<robot name="mrobot_description">
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.322 0.40 0.04" />
+      </geometry>
+      <material name="yellow">
+        <color rgba="1 0.4 0 1" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="left_axle_joint" type="fixed">
+    <origin xyz="0 0.150 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child  link="left_axle" />
+  </joint>
+
+  <link name="left_axle">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5704 0" />
+      <geometry>
+        <cylinder radius="0.010" length="0.368" />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 0.9" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="left_front_wheel_joint" type="continuous">
+    <origin xyz="0.184 0 0" rpy="0 0 0" />
+    <parent link="left_axle" />
+    <child  link="left_front_wheel" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="left_front_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5704 0" />
+      <geometry>
+        <cylinder radius="0.050" length="0.046" />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 0.9" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="left_behind_wheel_joint" type="continuous">
+    <origin xyz="-0.184 0 0" rpy="0 0 0" />
+    <parent link="left_axle" />
+    <child  link="left_behind_wheel" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="left_behind_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5704 0" />
+      <geometry>
+        <cylinder radius="0.050" length="0.046" />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 0.9" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_axle_joint" type="fixed">
+    <origin xyz="0 -0.150 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child  link="right_axle" />
+  </joint>
+
+  <link name="right_axle">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5704 0" />
+      <geometry>
+        <cylinder radius="0.010" length="0.368" />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 0.9" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_front_wheel_joint" type="continuous">
+    <origin xyz="0.184 0 0" rpy="0 0 0" />
+    <parent link="right_axle" />
+    <child  link="right_front_wheel" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="right_front_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5704 0" />
+      <geometry>
+        <cylinder radius="0.050" length="0.046" />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 0.9" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_behind_wheel_joint" type="continuous">
+    <origin xyz="-0.184 0 0" rpy="0 0 0" />
+    <parent link="right_axle" />
+    <child  link="right_behind_wheel" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="right_behind_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5704 0" />
+      <geometry>
+        <cylinder radius="0.050" length="0.046" />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 0.9" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="front_centre_joint" type="fixed">
+    <origin xyz="0.161 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child  link="front_centre_link" />
+  </joint>
+
+  <link name="front_centre_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.060 0.150 0.04" />
+      </geometry>
+      <material name="red">
+        <color rgba="1 0.4 0 1" />
+      </material>
+    </visual>
+  </link>
+
+</robot>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <name>mrobot_teleop</name>
+  <version>0.1.0</version>
+  <description>Control for twist robots</description>
+  <license>Apache License 2.0</license>
+  <author email="rosclub@modinge.com">Ray</author>
+  <author email="rosclub@modinge.com">dajianli</author>
+  <maintainer email="rosclub@modinge.com">Ray</maintainer>
+  <url type="bugtracker">http://www.rosclub.com/ROSClub/mrobot/issues</url>
+  <url type="repository">http://www.rosclub.com/ROSClub/mrobot</url>
+  <url type="website">http://www.rosclub.com</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>rospy</buildtool_depend>
+  <buildtool_depend>geometry_msgs</buildtool_depend>
+  <buildtool_depend>roscpp</buildtool_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>rospy</run_depend>
+</package>

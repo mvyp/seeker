@@ -1,0 +1,9 @@
+<launch>
+
+    <!-- 启动MRobot和雷达 -->
+    <include file="$(find mrobot_bringup)/launch/mrobot_with_laser.launch"/>
+
+    <!-- 运行摄像头驱动 -->
+    <include file="$(find mrobot_bringup)/launch/usb_cam.launch" />
+
+</launch>

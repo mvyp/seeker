@@ -1,0 +1,6 @@
+<launch>
+
+	<node	pkg="mrobot_teleop" 	type="mrobot_teleop_joystick" 	name="mrobot_teleop_joystick" 	output="screen" >
+	</node>
+
+</launch>         

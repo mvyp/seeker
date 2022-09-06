@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <name>mrobot</name>
+  <version>0.1.0</version>
+  <description>
+    ROS packages for the mrobot (meta package)
+  </description>
+  <license>Apache License 2.0</license>
+  <author email="rosclub@modinge.com">Ray</author>
+  <author email="rosclub@modinge.com">dajianli</author>
+  <maintainer email="rosclub@modinge.com">Ray</maintainer>
+  <url type="bugtracker">http://www.rosclub.com/ROSClub/mrobot/issues</url>
+  <url type="repository">http://www.rosclub.com/ROSClub/mrobot</url>
+  <url type="website">http://www.rosclub.com</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>mrobot_bringup</run_depend>
+  <run_depend>mrobot_description</run_depend>
+  <run_depend>mrobot_navigation</run_depend>
+  <run_depend>mrobot_slam</run_depend>
+  <run_depend>mrobot_teleop</run_depend>
+  <run_depend>rplidar_ros</run_depend>
+  <run_depend>startup</run_depend>
+  <export><metapackage/></export>
+</package>

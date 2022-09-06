@@ -1,0 +1,25 @@
+<launch>
+
+    <!-- 启动MRobot -->
+    <include file="$(find mrobot_bringup)/launch/mrobot.launch"/>
+
+    <!-- 建立雷达和基座的相对坐标 -->
+    <node pkg="tf" type="static_transform_publisher" name="base2laser" args="0 0 0 0 0 0 1 /base_link /laser 50"/>
+
+    <!-- 运行激光雷达驱动 -->
+    <include file="$(find mrobot_bringup)/launch/rplidar.launch" />
+
+
+    <!-- 里程计估算 -->
+    <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+        <remap from="robot_pose_ekf/odom_combined" to="odom_combined"/>
+        <param name="freq" value="10.0"/>
+        <param name="sensor_timeout" value="1.0"/>
+        <param name="publish_tf" value="true"/>
+        <param name="odom_used" value="true"/>
+        <param name="imu_used" value="false"/>
+        <param name="vo_used" value="false"/>
+        <param name="output_frame" value="odom"/>
+    </node>
+
+</launch>

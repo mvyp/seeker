@@ -1,0 +1,15 @@
+<package>
+  <name>startup</name>
+  <version>0.1.0</version>
+  <description>startup</description>
+  <license>Apache License 2.0</license>
+  <author email="rosclub@modinge.com">Ray</author>
+  <author email="rosclub@modinge.com">dajianli</author>
+  <maintainer email="rosclub@modinge.com">Ray</maintainer>
+  <url type="bugtracker">http://www.rosclub.com/ROSClub/mrobot/issues</url>
+  <url type="repository">http://www.rosclub.com/ROSClub/mrobot</url>
+  <url type="website">http://www.rosclub.com</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <export>
+  </export>
+</package>
