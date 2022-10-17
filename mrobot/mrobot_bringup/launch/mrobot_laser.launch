@@ -1,0 +1,16 @@
+<launch>
+
+
+
+
+    <!-- 启动MRobot -->
+    <include file="$(find mrobot_bringup)/launch/mrobot.launch"/>
+
+
+    <include file="$(find rplidar_ros)/launch/rplidar_s2.launch" />
+
+
+
+
+
+</launch>

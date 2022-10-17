@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot_name"		default="/"/>
+  <arg name="frame_prefix" 		default="" />
+  <arg name="odom0"			default="odom"/>
+  <arg name="imu0"			default="imu"/>
+  <arg name="odom_frame" 		default="odom"/>
+  <arg name="base_link_frame"		default="base_link"/>
+  <arg name="world_frame" 		default="odom"/>
+  <arg name="frequency"		default="20"/>
+  <arg name="sensor_timeout"		default="1.0"/>
+  <arg name="transform_timeout"	default="1.0"/>
+  <arg name="publish_tf"		default="true"/>
+  <arg name="two_d_mode"		default="true"/>
+
+  <!-- Robot Localization Param Matrix -->
+  
+  <!-- Position.X      Position.Y     Position.Z   -->
+  <!-- Position.Roll   Position.Pitch Position.Yaw -->
+  <!-- Linear.X        Linear.Y       Linear.Z -->
+  <!-- Angular.X       Angular.Y      Angular.Z -->
+  <!-- Acc.X           Acc.Y          Acc.Z -->
+  
+  <node pkg="robot_localization" type="ekf_localization_node" name="odom_to_base_ekf"> 
+    <param name="tf_prefix" 		value="$(arg robot_name)"/>
+    <param name="odom0" 		value="$(arg odom0)"/>
+    <param name="imu0" 		value="$(arg imu0)"/>
+    <param name="odom_frame" 		value="$(arg odom_frame)"/>
+    <param name="base_link_frame"	value="$(arg base_link_frame)"/>
+    <param name="world_frame" 	value="$(arg world_frame)"/>
+    <param name="frequency"		value="$(arg frequency)"/>
+    <param name="sensor_timeout"	value="$(arg sensor_timeout)"/>
+    <param name="transform_timeout"	value="$(arg transform_timeout)"/>
+    <param name="publish_tf"		value="$(arg publish_tf)"/>
+    <param name="two_d_mode"		value="$(arg two_d_mode)"/>
+    <remap from="odometry/filtered" 	to="odom" />
+    
+    <rosparam param="odom0_config">
+    [false, false, false,
+     false, false, false,
+     true , true , false,
+     false, false, true ,
+     false, false, false]
+    </rosparam>
+    
+    
+    <rosparam param="imu0_config">
+    [false, false, false,
+     false, false, false,
+     false , false , false,
+     false, false, true ,
+     false, false, false]
+    </rosparam>
+  </node>
+</launch>

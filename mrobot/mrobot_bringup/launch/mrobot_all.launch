@@ -1,0 +1,23 @@
+<launch>
+
+
+
+
+    <!-- 启动MRobot -->
+    <include file="$(find mrobot_bringup)/launch/mrobot.launch"/>
+
+
+    <include file="$(find rplidar_ros)/launch/rplidar_s2.launch" />
+
+    <!-- 运行激光雷达驱动 -->
+    <!--include file="$(find lakibeam1)/launch/lakibeam1_scan.launch" /-->
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base2imu" args="-0.02 0 0 0 0 0  base_link imu "/>
+
+
+    <include file="$(find fdilink_ahrs)/launch/ahrs_data.launch" />
+
+
+
+
+</launch>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="mrobot_navigation" type="multi_goals.py" respawn="false" name="multi_goals" output="screen">
+        <param name="goalListX" value="1.08, -1.42, 1.09, -1.47 " />
+        <param name="goalListY" value="2.84, 3.13, 5.88, 6.26" />
+        <param name="goalListYaw" value="-12.90, 169.91, 173.98, 80.77, " />
+        
+    </node>
+</launch>

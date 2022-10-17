@@ -1,13 +1,16 @@
 #include "mrobot.h"
-
-double RobotV_ = 0;
+#include<cmath>
+double RobotV_x = 0;
+double RobotV_y = 0;
 double YawRate_ = 0;
 
 // 速度控制消息的回调函数
 void cmdCallback(const geometry_msgs::Twist& msg)
 {
-	RobotV_ = msg.linear.x * 1000;
+	RobotV_x=msg.linear.x;
+	RobotV_y =msg.linear.y;
 	YawRate_ = msg.angular.z * 1000;
+
 }
     
 int main(int argc, char** argv)
@@ -31,7 +34,7 @@ int main(int argc, char** argv)
 		ros::spinOnce();
         
         // 机器人控制
-        	robot.spinOnce(RobotV_, YawRate_);
+        robot.spinOnce(RobotV_x, RobotV_y, YawRate_);
         
 		loop_rate.sleep();
 	}

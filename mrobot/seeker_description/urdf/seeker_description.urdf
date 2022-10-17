@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="seeker_description">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 180" />
+      <mass
+        value="18.4562925765378" />
+      <inertia
+        ixx="0.256210728643185"
+        ixy="6.56310068382339E-05"
+        ixz="-0.00180877112495313"
+        iyy="0.188299729850926"
+        iyz="-2.10390967866857E-05"
+        izz="0.145737478909493" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.152941176470588 1 0.596078431372549 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="front_right_link">
+    <inertial>
+      <origin
+        xyz="-5.13024805970375E-08 -0.00877234222415185 6.89433152897823E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.416037886047751" />
+      <inertia
+        ixx="0.000256520186506121"
+        ixy="4.61385776440181E-10"
+        ixz="3.9807927997381E-10"
+        iyy="0.000479257131749694"
+        iyz="-4.26781001354124E-09"
+        izz="0.000256542673895954" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/front_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/front_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_joint"
+    type="continuous">
+    <origin
+      xyz="0.14942 -0.17343 -0.3725"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_right_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="1000"
+      velocity="10" />
+  </joint>
+  <link
+    name="front_left_link">
+    <inertial>
+      <origin
+        xyz="5.76423534737192E-08 0.0101315333235539 2.90000992594908E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.370238645739765" />
+      <inertia
+        ixx="0.000250201173071859"
+        ixy="4.61362866002329E-10"
+        ixz="-3.98072218441376E-10"
+        iyy="0.000471946895325548"
+        iyz="1.76423567461658E-10"
+        izz="0.000250204831386972" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/front_left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/front_left_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_joint"
+    type="continuous">
+    <origin
+      xyz="0.14942 0.17245 -0.3725"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_left_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="1000"
+      velocity="10" />
+  </joint>
+  <link
+    name="back_right_link">
+    <inertial>
+      <origin
+        xyz="-5.7642353418208E-08 -0.356012658547887 2.90000992733686E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.370238645739766" />
+      <inertia
+        ixx="0.000250201173071859"
+        ixy="4.61362865956043E-10"
+        ixz="3.98072218443694E-10"
+        iyy="0.000471946895325548"
+        iyz="-1.7642356673835E-10"
+        izz="0.000250204831386972" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/back_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/back_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_right_joint"
+    type="continuous">
+    <origin
+      xyz="-0.15058 0.17245 -0.3725"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="back_right_link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      effort="1000"
+      velocity="10" />
+  </joint>
+  <link
+    name="back_left_link">
+    <inertial>
+      <origin
+        xyz="5.7642353418208E-08 0.356012658547887 2.90000992386741E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.370238645739765" />
+      <inertia
+        ixx="0.000250201173071859"
+        ixy="4.61362865920653E-10"
+        ixz="-3.98072218315937E-10"
+        iyy="0.000471946895325548"
+        iyz="1.76423566789701E-10"
+        izz="0.000250204831386972" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/back_left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/back_left_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_left_joint"
+    type="continuous">
+    <origin
+      xyz="-0.15058 -0.17343 -0.3725"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="back_left_link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      effort="1000"
+      velocity="10" />
+  </joint>
+  <link
+    name="laser">
+    <inertial>
+      <origin
+        xyz="-0.158703771276624 0.000932343170675927 -0.259691214061197"
+        rpy="0 0 0" />
+      <mass
+        value="28.9160237532607" />
+      <inertia
+        ixx="2.39217543646588"
+        ixy="-0.00150271372858997"
+        ixz="0.330768683261069"
+        iyy="2.53274754429052"
+        iyz="0.000921445190494185"
+        izz="1.18356101818861" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/laser.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://seeker_description/meshes/laser.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="0.13 -0 0"
+      rpy="0 0 3.1415926" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

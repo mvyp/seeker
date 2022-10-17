@@ -1,0 +1,29 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/msi/carto_ws/install_isolated/include/**",
+        "/home/msi/robocup_ws/devel/include/**",
+        "/home/msi/catkin_d435/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/msi/robocup_ws/src/mrobot/artificial_potential_fields/include/**",
+        "/home/msi/robocup_ws/src/driver/Azure_Kinect_ROS_Driver/include/**",
+        "/home/msi/robocup_ws/src/driver/fdilink_ahrs/include/**",
+        "/home/msi/robocup_ws/src/driver/lakibeam1/include/**",
+        "/home/msi/robocup_ws/src/mrobot/mrobot_bringup/include/**",
+        "/home/msi/catkin_d435/src/realsense-ros/realsense2_camera/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

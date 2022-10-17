@@ -1,0 +1,15 @@
+<launch>
+  <param name="robot_description" command="cat $(find seeker_description)/urdf/seeker_description.urdf"/>
+
+
+
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher_base">
+      <param name="use_gui" value="false"/>
+        </node>  
+  <node
+    name="robot_state_publisher_base"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" >
+  </node> 
+
+</launch>

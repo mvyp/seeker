@@ -1,4 +1,5 @@
 #include <vector>
+#include <string>
 #include "mrobot.h"
 
 namespace mrobot
@@ -12,7 +13,7 @@ const double ROBOT_RADIUS = 105.00;
 const double ROBOT_LENGTH = 210.50;
 
 boost::asio::io_service iosev;
-boost::asio::serial_port sp(iosev, "/dev/ttyUSB0");
+boost::asio::serial_port sp(iosev, "/dev/seeker");
 
 boost::array<double, 36> odom_pose_covariance = {
     {1e-9, 0, 0, 0, 0, 0, 
@@ -40,7 +41,7 @@ union sendDataINT16
 {
 	short d;
 	unsigned char data[2];
-}leftdataINT16, rightdataINT16;
+}leftdataINT16, rightdataINT16,yawdataINT16;
 
 
 
@@ -112,7 +113,7 @@ unsigned char Get_Sum(unsigned char *ptr, unsigned int len)
 }
 
 
-bool MRobot::readSpeed()
+bool MRobot::readSpeed(double RobotV_y)
 {
 	/*int i, length = 0;
 	unsigned char checkSum;
@@ -176,10 +177,15 @@ bool MRobot::readSpeed()
 	ros::Time curr_time;
 	for (i = 0; i < 2; i++)
 		receive_header.data[i] = buf[i];
-	
+	//std:: cout<<receive_header.data[0]<<std::endl;
+	//std:: cout<<receive_header.data[1]<<std::endl;
+	//ROS_ERROR("reading");
     // 检查信息头
 	if (receive_header.data[0] != 0xA5 || receive_header.data[1] != 0xA5)
 	{
+		//std:: cout<<receive_header.data[0]<<std::endl;
+		//std:: cout<<receive_header.data[1]<<std::endl;
+
 		ROS_ERROR("Received message header11 error!");
         	return false;
 	}
@@ -207,6 +213,8 @@ bool MRobot::readSpeed()
     leftdataINT16.data[1]  = buf[6];
     rightdataINT16.data[0] = buf[7];
     rightdataINT16.data[1] = buf[8];
+	yawdataINT16.data[0] = buf[9];
+    yawdataINT16.data[1] = buf[10];
 
 
 	
@@ -214,10 +222,10 @@ bool MRobot::readSpeed()
     // 积分计算里程计信息
     //vx_  = (vel_right.odoemtry_float + vel_left.odoemtry_float) / 2 / 1000;
     //vth_ = (vel_right.odoemtry_float - vel_left.odoemtry_float) / ROBOT_LENGTH;
-	vx_  = leftdataINT16.d / 1000.0;
+	vx_  = leftdataINT16.d/ 1000.0;
 	vth_ = rightdataINT16.d / 1000.0;
-    
-    	curr_time = ros::Time::now();
+    vy_  = RobotV_y;
+    curr_time = ros::Time::now();
 
 	double dt = (curr_time - last_time_).toSec();
 	double delta_x = (vx_ * cos(th_) - vy_ * sin(th_)) * dt;
@@ -236,7 +244,7 @@ bool MRobot::readSpeed()
 
 
 
-void MRobot::writeSpeed(double RobotV, double YawRate)
+void MRobot::writeSpeed(double RobotV_x, double RobotV_y,double YawRate)
 {
 	/*unsigned char buf[16] = {0};
 	int i, length = 0;
@@ -279,41 +287,50 @@ void MRobot::writeSpeed(double RobotV, double YawRate)
 	buf[2] = 0x03;
 	buf[3] = 0x08;
 	buf[4] = 0x01;
+	double temp=RobotV_x;
+	double RobotV_y_t;
+	RobotV_x = sqrt(RobotV_x*RobotV_x+RobotV_y*RobotV_y)*1000;
+	if (RobotV_y>0)
+	{RobotV_y_t = atan2(RobotV_y,temp)*57.29578;}
+	else
+	{RobotV_y_t = atan2(-RobotV_y,-temp)*57.29578+180;}
 
-	leftdataINT16.d = (short)(RobotV);
+	leftdataINT16.d = (short)(RobotV_x);
 	rightdataINT16.d = (short)(YawRate);
-
+	yawdataINT16.d = (short)(RobotV_y_t);
 	buf[5] = leftdataINT16.data[0];
 	buf[6] = leftdataINT16.data[1];
 
 	buf[7] = rightdataINT16.data[0];
 	buf[8] = rightdataINT16.data[1];
 	
-	buf[9] = 0;
-	buf[10] = 0;
+	buf[9] = yawdataINT16.data[0];
+	buf[10] = yawdataINT16.data[1];
 
 
 	SUM = Get_Sum(buf+2, 9);
 	buf[11] = SUM;
 
-
+	//ROS_INFO("publishing");
    
     // 通过串口下发数据
 	boost::asio::write(sp, boost::asio::buffer(buf));
 }
 
-bool MRobot::spinOnce(double RobotV, double YawRate)
-{
+bool MRobot::spinOnce(double RobotV_x,double RobotV_y, double YawRate)
+{	
+    
     // 下发机器人期望速度
-    writeSpeed(RobotV, YawRate);
+    writeSpeed(RobotV_x, RobotV_y,YawRate);
 
     // 读取机器人实际速度
-    readSpeed();
+    readSpeed(RobotV_y);
 
-    current_time_ = ros::Time::now();
+
+
     // 发布TF
     geometry_msgs::TransformStamped odom_trans;
-    odom_trans.header.stamp = current_time_;
+    odom_trans.header.stamp = ros::Time::now();
     odom_trans.header.frame_id = "odom";
     odom_trans.child_frame_id  = "base_link";
 
@@ -328,11 +345,11 @@ bool MRobot::spinOnce(double RobotV, double YawRate)
 
     // 发布里程计消息
     nav_msgs::Odometry msgl;
-    msgl.header.stamp = current_time_;
+    msgl.header.stamp = ros::Time::now();
     msgl.header.frame_id = "odom";
 
     msgl.pose.pose.position.x = x_;
-    msgl.pose.pose.position.y = y_;
+    msgl.pose.pose.position.y = x_;
     msgl.pose.pose.position.z = 0.0;
     msgl.pose.pose.orientation = odom_quat;
     msgl.pose.covariance = odom_pose_covariance;

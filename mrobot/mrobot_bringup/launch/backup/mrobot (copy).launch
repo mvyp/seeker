@@ -1,0 +1,18 @@
+<launch>
+
+    <!-- 启动控制板 -->
+
+    <!-- 加载机器人模型参数 -->
+    <param name="robot_description" textfile="$(find mrobot_description)/urdf/mrobot.urdf" />
+
+
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
+	<param name="use_gui" value="false"/>
+	<param name="rate" value="5"/>
+    </node>  
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="state_publisher">
+        <param name="publish_frequency" type="double" value="5.0" />
+    </node>
+
+</launch>

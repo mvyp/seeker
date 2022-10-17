@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot_name" 	default="/" />
+  <arg name="rviz" 		default="true"/>
+  <arg name="map" 		default="map.yaml" />
+  <arg name="use_sim_time" 	default="false" />
+  
+    <!-- =========== Map Server =========== -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find mrobot_navigation)/maps/$(arg map)">
+      <param name="frame_id" value="map" />
+    </node>
+
+    <!-- ========== Localization ========== -->
+    <include file="$(find mrobot_navigation)/launch/include/loc2d.launch"/>
+    <include file="$(find mrobot_navigation)/launch/include/laser_filter.launch"/>
+
+  
+    <!-- ============ Move_Base ============ -->
+    <include file="$(find mrobot_navigation)/launch/include/move_base.launch">
+      </include>
+          
+    <!-- =========== Multi_Goals =========== -->
+    <!--include file="$(find buct_arx_navigation)/launch/include/multi_goals.launch"/-->
+    
+    <!-- ============== Rviz ==============-->
+    <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" required="true"
+       args="-d $(find mrobot_navigation)/rviz/mrobot_nav.rviz"/>
+
+          
+</launch>

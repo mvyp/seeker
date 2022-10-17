@@ -1,0 +1,17 @@
+<launch>
+
+
+
+
+    <!-- 启动MRobot -->
+    <include file="$(find seeker_description)/launch/display.launch"/>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base2imu" args="-0.02 0 0 0 0 0  odom base_link "/>
+
+
+    <include file="$(find rplidar_ros)/launch/rplidar_s2.launch" />
+
+
+
+
+
+</launch>

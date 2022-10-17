@@ -1,6 +1,18 @@
 # mrobot ros package by ROSClub
 ## 环境
-Tested in Ubuntu20.04
+系统环境：<br>
+ubuntu14.04 + ros-indigo-desktop<br>
+ubuntu16.04 + ros-kinetic-desktop<br>
+推荐组合：<br>
+NVIDIA Jetson TK1 （ubuntu14.04 + ros-indigo-desktop）<br>
+树莓派3 （ubuntu16.04 + ros-kinetic-desktop）<br>
+## 工作空间
+mkdir -p mrobot_ws/src<br>
+cd ..<br>
+catkin_init_workspace<br>
+cd src<br>
+git clone https://github.com/ROSClub/mrobot.git<br>
+cd ~/mrobot_ws && catkin_make<br>
 ## STM32通信协议
 ⼀帧数据为： [消息头(2字节)] [命令(2字节)] [⻓度(1字节)] [数据(n字节， n=⻓度)] [校验(1字节)] [消息尾(2字节)]
 消息头固定为[0x55 0xaa]，消息尾固定为[0x0d 0x0a]<br>

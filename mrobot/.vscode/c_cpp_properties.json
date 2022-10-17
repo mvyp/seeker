@@ -1,0 +1,40 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/lch/arx_ws/devel/include/**",
+        "/home/lch/catkin_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/lch/catkin_ws/src/artificial_potential_fields/include/**",
+        "/home/lch/arx_ws/src/arx6_isaac_ros1/include/**",
+        "/home/lch/catkin_ws/src/Azure_Kinect_ROS_Driver/include/**",
+        "/home/lch/catkin_ws/src/k4a-ros/include/**",
+        "/home/lch/catkin_ws/src/laser_scan_matcher_odometry/include/**",
+        "/home/lch/catkin_ws/src/mrobot/mrobot_bringup/include/**",
+        "/home/lch/catkin_ws/src/geometry2/tf2/include/**",
+        "/home/lch/catkin_ws/src/geometry2/tf2_bullet/include/**",
+        "/home/lch/catkin_ws/src/geometry2/tf2_eigen/include/**",
+        "/home/lch/catkin_ws/src/geometry2/tf2_geometry_msgs/include/**",
+        "/home/lch/catkin_ws/src/geometry2/tf2_kdl/include/**",
+        "/home/lch/catkin_ws/src/geometry2/tf2_msgs/include/**",
+        "/home/lch/catkin_ws/src/geometry2/tf2_ros/include/**",
+        "/home/lch/catkin_ws/src/geometry2/tf2_sensor_msgs/include/**",
+        "/home/lch/catkin_ws/src/wpb_home/wpb_home_bringup/include/**",
+        "/home/lch/catkin_ws/src/wpb_home/wpb_home_tutorials/include/**",
+        "/home/lch/catkin_ws/src/wpb_home/wpbh_local_planner/include/**",
+        "/home/lch/catkin_ws/src/wpr_simulation/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

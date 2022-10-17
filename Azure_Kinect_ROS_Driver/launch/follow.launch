@@ -1,0 +1,15 @@
+<launch>
+
+    <include file="$(find mrobot_bringup)/launch/mrobot_laser.launch"/>
+
+    <include file="$(find azure_kinect_ros_driver)/launch/driver.launch">
+        <arg name="body_tracking_enabled" value="true" />
+    </include>
+    
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base2kinect" args="-0.1 0 1 0 0 0  base_link camera_base "/>
+
+    <include file="$(find artificial_potential_fields)/launch/APF.launch"/>
+    
+    <node  pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find azure_kinect_ros_driver)/rviz/rviz.rviz"/>
+
+</launch>

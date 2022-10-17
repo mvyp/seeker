@@ -18,11 +18,11 @@ namespace mrobot
 		    MRobot();
 		    ~MRobot();
 		    bool init();
-		    bool spinOnce(double RobotV, double YawRate);
+		    bool spinOnce(double RobotV_x, double RobotV_y,double YawRate);
 		   
 		private:
-		    bool readSpeed();
-		    void writeSpeed(double RobotV, double YawRate);
+		    bool readSpeed(double RobotV_y);
+		    void writeSpeed(double RobotV_x,double RobotV_y, double YawRate);
 		    unsigned char getCrc8(unsigned char *ptr, unsigned short len);
 		   
 		private:
