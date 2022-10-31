@@ -26,13 +26,26 @@ void filterSphere(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud){
     //ROS_INFO_STREAM("[APF] inliers->indices.size() = " << inliers->indices.size());
     //ROS_INFO_STREAM("[APF] cloud->size() = " << cloud->size());
 }
+/* Reminder: how transformation matrices work :
 
+           |-------> This column is the translation
+    | 1 0 0 x |  \
+    | 0 1 0 y |   }-> The identity 3x3 matrix (no rotation) on the left
+    | 0 0 1 z |  /
+    | 0 0 0 1 |    -> We do not use this line (and it has to stay 0,0,0,1)
+
+    METHOD #1: Using a Matrix4f
+    This is the "manual" method, perfect to understand but error prone !
+  */
 void laserCallback(const sensor_msgs::LaserScan::ConstPtr& scan){
     sensor_msgs::PointCloud2 msg_cloud;
     projector.projectLaser(*scan, msg_cloud,0.6);
     pcl::fromROSMsg(msg_cloud, *cloud);
     //filterSphere(cloud); // filters out points inside the bounding sphere
-
+    Eigen::Matrix4f transform_1 = Eigen::Matrix4f::Identity();
+    transform_1 (0,3) = -0.2;
+    pcl::transformPointCloud(*cloud, pc_global, sensorToWorld);
+    
     pcl::PassThrough<pcl::PointXYZ> pass;
     pass.setInputCloud(cloud);
     pass.setFilterFieldName("x");
