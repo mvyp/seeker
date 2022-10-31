@@ -44,7 +44,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& scan){
     //filterSphere(cloud); // filters out points inside the bounding sphere
     Eigen::Matrix4f transform_1 = Eigen::Matrix4f::Identity();
     transform_1 (0,3) = -0.2;
-    pcl::transformPointCloud(*cloud, pc_global, sensorToWorld);
+    pcl::transformPointCloud(cloud, cloud, sensorToWorld);
     
     pcl::PassThrough<pcl::PointXYZ> pass;
     pass.setInputCloud(cloud);
